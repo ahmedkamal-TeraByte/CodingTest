@@ -40,7 +40,6 @@ namespace CodingTest.Models
         {
             if (CheckMetaData(metaData))
             {
-                ID = Convert.ToInt32(metaData["ID"]?.ToString());
                 Title = metaData["Title"].ToString();
                 Duration = Convert.ToUInt32(metaData["Duration"].ToString());
                 UploadTime = Convert.ToDateTime(metaData["UploadTime"].ToString());

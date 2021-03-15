@@ -24,8 +24,8 @@ namespace CodingTest.Controllers
         {
             try
             {
-                AddOrUpdateData(request);
-                return Ok();
+                var audio = AddOrUpdateData(request);
+                return Ok(audio);
 
             }
             catch (Exception ex)
@@ -58,8 +58,8 @@ namespace CodingTest.Controllers
         {
             try
             {
-                AddOrUpdateData(request, true, id);
-                return Ok();
+                var audio = AddOrUpdateData(request, true, id);
+                return Ok(audio);
 
             }
             catch (Exception ex)
@@ -102,7 +102,7 @@ namespace CodingTest.Controllers
         {
             return AudiosContext.Find<T>(id);
         }
-        private void AddOrUpdateData(CreateRequest request, bool update = false, int id = -1)
+        private IAudio AddOrUpdateData(CreateRequest request, bool update = false, int id = -1)
         {
             IAudio audio = null;
             if (typeof(T) == typeof(Song))
@@ -133,6 +133,7 @@ namespace CodingTest.Controllers
                     throw new Exception("Please call corresponding route.");
             }
             AddOrUpdate(audio, update, id);
+            return audio;
         }
 
         private void AddOrUpdate(IAudio audio, bool update, int id = -1)
